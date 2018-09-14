@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Heatmap created using KML2HEATMAP</title>
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 25%;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="floating-panel">
+	  RADIUS: <input type="range" id="radiusSlider" onchange="changeRadius(radiusSlider.value)"  min="1" max="100" step="1" value="10">
+	  MAX INTENSITY: <input type="range" id="maxISlider" onchange="changeMaxIntensity(maxISlider.value)"  min="1" max=heatmap.get('maxIntensity')*2 step="1" value=heatmap.get('maxIntensity')/2>
+	  <br>
+      <button onclick="changeGradient()">Change gradient style</button>
+      <button onclick="changeOpacity()">Change opacity</button>
+	  <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+    </div>
+    <div id="map"></div>
+    <script>
+
+      var map, heatmap;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: ###ZOOM###,
+          center: {lat: ###LAT###, lng: ###LONG###},
+          mapTypeId: 'satellite'
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      }
+
+      function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+      }
+
+      function changeGradient() {
+        var gradient = [
+          'rgba(0, 255, 255, 0)',
+		  'rgba(0, 255, 255, 1)',
+          'rgba(0, 255, 255, 1)',
+          'rgba(0, 223, 255, 1)',
+		  'rgba(0, 191, 255, 1)',
+          'rgba(0, 159, 255, 1)',
+		  'rgba(0, 127, 255, 1)',
+		  'rgba(0, 91, 255, 1)',
+          'rgba(0, 63, 255, 1)',
+		  'rgba(0, 31, 255, 1)',
+          'rgba(0, 0, 255, 1)',
+		  'rgba(0, 0, 239, 1)',
+          'rgba(0, 0, 223, 1)',
+		  'rgba(0, 0, 207, 1)',
+          'rgba(0, 0, 191, 1)',
+		  'rgba(0, 0, 175, 1)',
+          'rgba(0, 0, 159, 1)',
+		  'rgba(0, 0, 143, 1)',
+          'rgba(0, 0, 127, 1)',
+		  'rgba(0, 0, 111, 1)',
+          'rgba(33, 0, 91, 1)',
+		  'rgba(63, 0, 76, 1)',
+          'rgba(91, 0, 63, 1)',
+		  'rgba(127, 0, 47, 1)',
+          'rgba(159, 0, 31, 1)',
+		  'rgba(191, 0, 15, 1)',
+          'rgba(223, 0, 0, 1)',
+		  'rgba(255, 0, 0, 1)'
+        ]
+        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+      }
+
+      function changeMaxIntensity(m) {
+        heatmap.set('maxIntensity', heatmap.get('maxIntensity') ? m*1 : m*1);
+      }	  
+
+      function changeRadius(r) {
+        heatmap.set('radius', heatmap.get('radius') ? r*1 : r*1);
+      }
+
+      function changeOpacity() {
+        heatmap.set('opacity', heatmap.get('opacity') ? null : .25);
+      }
+
+      function getPoints() {
+        return [
