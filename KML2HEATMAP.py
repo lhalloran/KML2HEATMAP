@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 
 ################################################
 # PLEASE DEFINE THESE INPUTS
-myAPI='AIzaSyDq8TuSdMWVCeFwCUIFUQ_mbNZfVozysPY' # Sorry, you have to get your own!
+myAPI='YOUR API KEY GOES HERE' # Sorry, you have to get your own!
 kml_folder='example_kml_files/'
 init_long=6.9
 init_lat=47
