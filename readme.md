@@ -2,7 +2,7 @@
 
 version 0.1
 14.09.2018
-Author: Landon Halloran (web: ljsh.ca)
+Author: Landon Halloran ([website](http://www.ljsh.ca))
 
 ## Description
 A python script that creates a javascript-based heatmap from longitude, latitude coordinate pairs contained in kml files.
