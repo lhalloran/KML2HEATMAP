@@ -34,4 +34,4 @@ This has been tested with kml files exported from:
 - Python (tested with Python 3.6 via anaconda distribution)
 
 ## Included example files 
-The subfolder `example_kml_files/` contains some kml files exported from a fitness tracking website (based on phone of GPS watch data).
+The subfolder `example_kml_files/` contains some kml files exported from a fitness tracking website (based on phone or GPS watch data).
