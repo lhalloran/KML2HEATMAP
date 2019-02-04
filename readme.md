@@ -9,12 +9,12 @@ A python script that creates a javascript-based heatmap from longitude, latitude
 
 ## Screenshots of example outputs
 
+### Running routes from GPS-enabled watch output
+![example3](example_images/screenshot3.png)
+
 ### Google Location History
 ![example1](example_images/screenshot1.png)
 ![example2](example_images/screenshot2.png)
-
-### Running routes from GPS-enabled watch output
-![example3](example_images/screenshot3.png)
 
 ## What it does...
 This script reads in kml files from a selected folder, parses the long/lat data from them, and then outputs an html file that uses the Google Maps Javascript API.
